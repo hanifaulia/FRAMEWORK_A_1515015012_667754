@@ -44,7 +44,7 @@ class RuanganController extends Controller
     }
     public function hapus($id){
         $ruangan = ruangan::find($id);
-         $informasi = $ruangan->detele() ? 'berhasil hapus data' : 'gagal hapus data';
+         $informasi = $ruangan->delete() ? 'berhasil hapus data' : 'gagal hapus data';
         return redirect('ruangan')->with(['informasi'=>$informasi]);
 
     }

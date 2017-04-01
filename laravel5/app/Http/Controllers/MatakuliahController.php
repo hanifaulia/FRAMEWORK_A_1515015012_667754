@@ -42,7 +42,7 @@ class MatakuliahController extends Controller
     }
     public function hapus($id){
         $matakuliah = matakuliah::find($id);
-         $informasi = $matakuliah->detele() ? 'berhasil hapus data' : 'gagal hapus data';
+         $informasi = $matakuliah->delete() ? 'berhasil hapus data' : 'gagal hapus data';
         return redirect('matakuliah')->with(['informasi'=>$informasi]);
 
     }

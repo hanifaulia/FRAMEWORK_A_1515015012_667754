@@ -14,16 +14,16 @@ class PenggunaController extends Controller
     public function awal(){
         return view('pengguna.awal', ['data' => pengguna::all()]);
         //relasi dari dosen ke pengguna
-        return $data = dosen::where('pengguna_id', 12)->with('pengguna')->get(); 
+       // return $data = dosen::where('pengguna_id', 12)->with('pengguna')->get(); 
         //relasi dari pengguna ke dosen
-        return $data = pengguna::where('id', 12)->with('dosen')->get();
+       // return $data = pengguna::where('id', 12)->with('dosen')->get();
     }
     public function tambah(){
         return view('pengguna.tambah');
     }
     public function simpan(Request $input){
         $pengguna = new pengguna();
-        $pengguna->username = $input->username;
+        $pengguna->username = $input->username; 
         $pengguna->password = $input->password;
         $informasi = $pengguna->save() ? 'berhasil simpan data' : 'gagal simpan data';
         return redirect('pengguna')->with(['informasi'=>$informasi]);
@@ -45,7 +45,7 @@ class PenggunaController extends Controller
     }
     public function hapus($id){
         $pengguna = pengguna::find($id);
-         $informasi = $pengguna->detele() ? 'berhasil hapus data' : 'gagal hapus data';
+         $informasi = $pengguna->delete() ? 'berhasil hapus data' : 'gagal hapus data';
         return redirect('pengguna')->with(['informasi'=>$informasi]);
 
     }

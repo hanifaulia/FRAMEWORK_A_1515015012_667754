@@ -8,6 +8,10 @@ class matakuliah extends Model
 {
     protected $table = 'matakuliah';
     protected $fillable = ['title','keterangan'];
+     public function dosen_matakuliah()
+    {
+    	return $this->hasMany(dosenMatakuliah::class);
+    }
     // public function dosenMatakuliah(){
     //       return  $this->hasMany('App\dosenMatakuliah', 'matakuliah_id');
     // }
