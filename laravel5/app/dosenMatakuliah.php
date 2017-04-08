@@ -7,27 +7,43 @@ use Illuminate\Database\Eloquent\Model;
 
 class dosenMatakuliah extends Model
 {
+    //
     protected $table = 'dosen_matakuliah';
-    protected $fillable = ['dosen_id','matakuliah_id'];
-        public function Dosen()
+    protected $fillable = ['dosen_id', 'matakuliah_id'];
+
+    public function Dosen()
     {
-        return $this->belongsTo(dosen::class);
+        return $this->belongsTo(Dosen::class);
     }
 
     public function Matakuliah()
     {
-        return $this->belongsTo(matakuliah::class);
+        return $this->belongsTo(Matakuliah::class);
     }
 
     public function Jadwal_Matakuliah()
     {
-        return $this->hasMany(jadwalMatakuliah::class);
+        return $this->hasMany(Jadwal_Matakuliah::class);
     }
-    // public function matakuliah(){
-    //       return  $this->hasMany('App\matakuliah', 'id', 'matakuliah_id');
-    // }
 
-    // public function dosen(){
-    //       return  $this->hasMany('App\dosen', 'id', 'dosen_id');
-    // }
+    public function getNamadosenAttribute(){
+        return $this->dosen->nama;
+    }
+
+    public function getNipdosenAttribute(){
+        return $this->dosen->nip;
+    }
+    
+    public function getTitlematakuliahAttribute(){
+        return $this->matakuliah->title;
+    }
+    
+    public function listDosenDanMatakuliah()
+    {
+        $out = [];
+        foreach ($this->all() as $dsnMtk) {
+            $out[$dsnMtk->id] = "{$dsnMtk->dosen->nama} {$dsnMtk->dosen->nip} (Matakuliah {$dsnMtk->matakuliah->title})";
+        }
+        return $out;
+    }
 }
