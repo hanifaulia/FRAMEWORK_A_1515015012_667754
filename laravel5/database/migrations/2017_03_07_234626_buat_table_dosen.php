@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TbMahasiswaa extends Migration
+class BuatTableDosen extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,14 @@ class TbMahasiswaa extends Migration
      */
     public function up()
     {
-        Schema::create('mahasiswa', function (Blueprint $table) {
+        Schema::create('dosen', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama',50);
-            $table->string('nim',10);
-            $table->text('alamat',10);
-            $table->integer('pengguna_id',false,true);
-            $table->foreign('pengguna_id')->references('id')->on('pengguna')->onDelete('cascade'); 
+            $table->string('nip',18);
+            $table->text('alamat');
+            $table->integer('pengguna_id')->unsigned();
+            $table->foreign('pengguna_id')->references('id')->on('pengguna');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +30,6 @@ class TbMahasiswaa extends Migration
      */
     public function down()
     {
-        Schema::drop('mahasiswaa');
+        Schema::drop('dosen');
     }
 }

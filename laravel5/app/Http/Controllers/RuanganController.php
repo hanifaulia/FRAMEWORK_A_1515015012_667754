@@ -5,48 +5,55 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\ruangan;
+
+use App\Ruangan;
 
 class RuanganController extends Controller
 {
-    public function awal(){
-         return view('ruangan.awal', ['data' => ruangan::all()]);
-        //relasi dari dosen ke pengguna
-        // return $data = dosen::where('pengguna_id', 12)->with('pengguna')->get(); 
-        // //relasi dari pengguna ke dosen
-        // return $data = pengguna::where('id', 12)->with('dosen')->get();
-        return "halo";
+
+    public function awal() 
+    {
+        return view('ruangan.awal', ['data' => Ruangan::all()]);
     }
-     public function tambah(){
+
+    public function tambah()
+    {
         return view('ruangan.tambah');
     }
-    public function simpan(Request $input){
-        $ruangan = new ruangan();
-        $ruangan -> username = $input->username;
-        $ruangan -> password = $input->password;
-        $informasi = $ruangan->save() ? 'berhasil simpan data' : 'gagal simpan data';
+
+    public function simpan(Request $input)
+    {
+        $ruangan = new Ruangan();
+        $ruangan->title = $input->title;
+        $informasi = $ruangan->save() ? 'Berhasil simpan data' : ' Gagal';
         return redirect('ruangan')->with(['informasi'=>$informasi]);
     }
-    public function edit($id){
-        $ruangan = ruangan::find($id);
+
+    public function edit($id)
+    {
+        $ruangan = Ruangan::find($id);
         return view('ruangan.edit')->with(array('ruangan'=>$ruangan));
     }
-    public function lihat($id){
-        $ruangan = ruangan::find($id);
+
+    public function lihat($id)
+    {
+        $ruangan = Ruangan::find($id);
         return view('ruangan.lihat')->with(array('ruangan'=>$ruangan));
     }
-    public function update($id, request $input){
-        $ruangan = ruangan::find($id);
-        $ruangan -> username = $input->username;
-        $ruangan -> password = $input->password;
-        $informasi = $ruangan->save() ? 'berhasil update data' : 'gagal update data';
+
+    public function update($id, Request $input)
+    {
+        $ruangan = Ruangan::find($id);
+        $ruangan->title = $input->title;
+        $informasi = $ruangan->save() ? 'Berhasil update data' : 'Gagal update data';
         return redirect('ruangan')->with(['informasi'=>$informasi]);
     }
-    public function hapus($id){
-        $ruangan = ruangan::find($id);
-         $informasi = $ruangan->delete() ? 'berhasil hapus data' : 'gagal hapus data';
-        return redirect('ruangan')->with(['informasi'=>$informasi]);
 
+    public function hapus($id)
+    {
+        $ruangan = Ruangan::find($id);
+        $informasi = $ruangan->delete() ? 'Berhasil hapus data' : 'Gagal hapus data';
+        return redirect('ruangan')->with(['informasi'=>$informasi]);
     }
 
 }

@@ -81,7 +81,7 @@
 	</div>
 	<nav class="navbar navbar-default navbar-fixed-bottom">
 		<footer class="container">
-			create by <a href="/" <span><i class="fa fa-twitter" <style="color:#1da1f2"></i>@Hanif Aulia</span></a>
+			create by <a href="/" <span><i class="fa fa-facebook" <style="color:#1da1f2"></i> &copy;rHanif</span></a>
 		</footer>
 	</nav>
 	<script type="text/javascript" src="{{ asset('component/jquery/dist/jquery.min.js') }}"></script>

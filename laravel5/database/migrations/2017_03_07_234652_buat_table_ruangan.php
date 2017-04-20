@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TbRuangan extends Migration
+class BuatTableRuangan extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class TbRuangan extends Migration
     {
         Schema::create('ruangan', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title',255);
+            $table->string('title');
+            $table->timestamps();
         });
     }
 

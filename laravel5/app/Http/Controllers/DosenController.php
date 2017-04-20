@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\dosen;
+
+use App\Dosen;
+use App\Pengguna;
 
 class DosenController extends Controller
 {

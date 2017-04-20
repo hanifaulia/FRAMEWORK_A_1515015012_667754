@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class pengguna extends Model
+class Pengguna extends Model
 {
     //
     protected $table = 'pengguna';
@@ -24,4 +24,3 @@ class pengguna extends Model
 		return $this->belongsToMany(Peran::class);
 	}
 }
-

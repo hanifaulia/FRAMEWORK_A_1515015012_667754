@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TbMatakuliah extends Migration
+class BuatTableMatakuliah extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,9 @@ class TbMatakuliah extends Migration
     {
         Schema::create('matakuliah', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title',255);
-            $table->string('keterangan',255);
-            
+            $table->string('title');
+            $table->string('keterangan');
+            $table->timestamps();
         });
     }
 
