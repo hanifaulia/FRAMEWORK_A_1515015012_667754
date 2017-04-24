@@ -2,13 +2,19 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use illuminate\Database\Eloquent\Model;
 
 class Peran extends Model
 {
-    //
-    protected $table = 'peran';
-    public function pengguna(){
-    	return $this->belongsToMany(Pengguna::class);
-    }
+	Protected $table ='peran';
+	
+	public function pengguna()
+	{
+		return $this -> belongsToMany(Pengguna::class);// many to many dengan model pengguna 
+
+	}
+
 }
+
+
+?>

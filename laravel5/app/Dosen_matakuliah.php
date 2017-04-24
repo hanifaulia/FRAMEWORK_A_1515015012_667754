@@ -4,45 +4,31 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Dosen_matakuliah extends Model
+class dosen_matakuliah extends Model
 {
-    //
-    protected $table = 'dosen_matakuliah';
-    protected $fillable = ['dosen_id', 'matakuliah_id'];
+    protected $table ='dosen_matakuliah';
+	protected $fillable =['dosen_id','matakuliah_id'];
 
-    public function Dosen()
+	public function dosen()
     {
-        return $this->belongsTo(Dosen::class);
+    	return $this->belongsTo(Dosen::class,"dosen_id"); //one to one ke model dosen
     }
 
-    public function Matakuliah()
+    public function matakuliah()
     {
-        return $this->belongsTo(Matakuliah::class);
+    	return $this->belongsTo(Matakuliah::class,"matakuliah_id"); //one to one ke model matakuliah
     }
 
-    public function Jadwal_Matakuliah()
+    public function jadwal_matkul()
     {
-        return $this->hasMany(Jadwal_Matakuliah::class);
+    	return $this->hasMany(Jadwal_Matkul::class,"dosen_matakuliah_id");
     }
-
-    public function getNamadosenAttribute(){
-        return $this->dosen->nama;
-    }
-
-    public function getNipdosenAttribute(){
-        return $this->dosen->nip;
-    }
-    
-    public function getTitlematakuliahAttribute(){
-        return $this->matakuliah->title;
-    }
-    
-    public function listDosenDanMatakuliah()
-    {
+      public function listDosenDanMatakuliah(){
         $out = [];
-        foreach ($this->all() as $dsnMtk) {
-            $out[$dsnMtk->id] = "{$dsnMtk->dosen->nama} {$dsnMtk->dosen->nip} (Matakuliah {$dsnMtk->matakuliah->title})";
+        foreach ($this->all() as $dsnmtk) {
+            $out[$dsnmtk->id] = "{$dsnmtk->dosen->nama} (matakuliah {$dsnmtk->matakuliah->title})";
         }
         return $out;
     }
+
 }
